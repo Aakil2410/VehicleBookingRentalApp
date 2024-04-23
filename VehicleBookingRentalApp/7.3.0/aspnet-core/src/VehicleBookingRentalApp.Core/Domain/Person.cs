@@ -11,7 +11,7 @@ namespace VehicleBookingRentalApp.Domain
 
         public virtual string Surname { get; set; }
 
-        public virtual string FullName { get; set; } // protected?
+        public virtual string FullName { get; protected set; } // protected?
 
         public virtual Gender? Gender { get; set; }
 

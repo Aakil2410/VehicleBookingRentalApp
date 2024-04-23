@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace VehicleBookingRentalApp.Domain.Enums
 {
@@ -19,9 +14,6 @@ namespace VehicleBookingRentalApp.Domain.Enums
         Weekly = 3,
 
         [Description("Monthly")]
-        Male = 4,
-
-        [Description("Female")]
-        Female = 2,
+        Male = 4
     }
 }

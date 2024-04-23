@@ -8,7 +8,7 @@ namespace VehicleBookingRentalApp.Domain
     {
         public virtual DateTime? DateOfBooking { get; set; }
 
-        public virtual string RentalPeriod { get; set; }  // calculated >> max 1 year 
+        public virtual int RentalPeriod { get; set; }  // calculated >> max 1 year 
 
         public virtual DateTime? StartDate {  get; set; }
 
@@ -23,6 +23,8 @@ namespace VehicleBookingRentalApp.Domain
         public virtual string DeliveryLocation { get; set; }
 
         public virtual decimal? RentalCost { get; set; }
+
+
 
         public virtual Person Person { get; set; }  // Person id
 
