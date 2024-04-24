@@ -1,13 +1,15 @@
-import { HeroHeader } from "../../components";
-
-
+'use client'
+import { HeroSection } from "../../components";
 
 export default function Home() {
   return (
-    <main
-    className="overflow-hidden">
-      <HeroHeader />
-      
+    <main className="ovverflow-hidden">
+      <HeroSection />
+
+      <div className="">
+
+      </div>
+
     </main>
   );
 }
