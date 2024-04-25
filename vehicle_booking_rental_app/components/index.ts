@@ -6,6 +6,7 @@ import SearchManufacturer from "./SearchManufacturer/page";
 import CustomFilter from "./CustomFilter/page";
 import VehicleCard from "./VehicleCard/page";
 import VehicleDetails from "./VehicleDetails/page";
+import ShowMoreVehicles from "./ShowMoreVehicles/page";
 import Footer from "./Footer/page";
 
 export{
@@ -17,6 +18,6 @@ export{
     CustomFilter,
     VehicleCard,
     VehicleDetails,
+    ShowMoreVehicles,
     Footer
-
 }

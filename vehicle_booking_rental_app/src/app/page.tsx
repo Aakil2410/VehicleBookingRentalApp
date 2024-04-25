@@ -1,10 +1,18 @@
 
-import { HeroSection, Search, CustomFilter, VehicleCard} from "../../components";
+import { HeroSection, Search, CustomFilter, VehicleCard, ShowMoreVehicles} from "../../components";
 import { getVehicles } from "../../providers/VehicleProvider";
+import { fuels, yearsOfProduction } from "../../constants";
+import { HomeProps } from "../../types";
 
-export default async function Home() {
+export default async function Home({ searchParams }: HomeProps) {
 
-  const allVehicles = await getVehicles();
+  const allVehicles = await getVehicles({
+    manufacturer: searchParams.manufacturer || "",
+    year: searchParams.year || 2024,
+    fuel: searchParams.fuel || "",
+    limit: searchParams.limit || 10,
+    model: searchParams.model || ""
+  });
 
   const isDataEmpty = !Array.isArray(allVehicles) || allVehicles.length < 1 || !allVehicles;
   
@@ -22,8 +30,8 @@ export default async function Home() {
           <Search />
 
           <div className='home__filter-container'>
-            <CustomFilter title='fuel' />
-            <CustomFilter title='year' />
+            <CustomFilter title='fuel' options={fuels} />
+            <CustomFilter title='year' options={yearsOfProduction} />
           </div>
         </div>
 
@@ -35,10 +43,10 @@ export default async function Home() {
               ))}
             </div>
 
-            {/* <ShowMore
+            <ShowMoreVehicles
               pageNumber={(searchParams.limit || 10) / 10}
               isNext={(searchParams.limit || 10) > allVehicles.length}
-            /> */}
+            /> 
           </section>
         ) : (
           <div className='home__error-container'>
