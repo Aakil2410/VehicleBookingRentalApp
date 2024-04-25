@@ -1,12 +1,12 @@
 'use client'
 import React from 'react'
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <div>
-      Sign in
+      Sign Up
     </div>
   )
 }
 
-export default SignIn
+export default SignUp
