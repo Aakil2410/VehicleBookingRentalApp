@@ -3,7 +3,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { VehicleProps } from "../../types";
 import CustomButton from "../CustomButton/page";
-import { calculateCarRent } from "../../providers/VehicleProvider";
+import { calculateCarRent, generateVehicleImageUrl } from "../../providers/VehicleProvider";
+import VehicleDetails from "../VehicleDetails/page";
 
 interface VehicleCardProps {
   vehicle: VehicleProps;
@@ -28,7 +29,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
 
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src="/hero.png"
+          src={generateVehicleImageUrl(vehicle,"")}
           alt="vehicle model"
           fill
           priority
@@ -69,6 +70,8 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
           />
         </div>
       </div>
+
+      <VehicleDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} vehicle={vehicle}/>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Search from "./Search/page";
 import SearchManufacturer from "./SearchManufacturer/page";
 import CustomFilter from "./CustomFilter/page";
 import VehicleCard from "./VehicleCard/page";
+import VehicleDetails from "./VehicleDetails/page";
 import Footer from "./Footer/page";
 
 export{
@@ -15,6 +16,7 @@ export{
     SearchManufacturer,
     CustomFilter,
     VehicleCard,
+    VehicleDetails,
     Footer
 
 }
