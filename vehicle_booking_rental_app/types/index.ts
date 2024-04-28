@@ -6,13 +6,14 @@ export interface CustomButtonProps {
     handleClick?: MouseEventHandler<HTMLButtonElement>;
     btnType?: "button" | "submit";
     textStyles?: string;
-    rightIcon: string;
+    rightIcon?: string;
     isDisabled?: boolean;
 }
 
-export interface HomeProps {
-    searchParams: FilterProps;
-}
+export interface SearchProps {
+    setManufacturer: (manufacturer: string) => void;
+    setModel: (model: string) => void;
+  }
 
 export interface FilterProps {
     manufacturer?: string;
@@ -27,14 +28,14 @@ export interface OptionProps {
     value: string;
 }
 
-export interface CustomFilterProps {
-    title: string;
+export interface CustomFilterProps<T> {
     options: OptionProps[];
-}
+    setFilter: (selected: T) => void;
+  }
 
 export interface SearchManufacturerProps {
-    manufacturer: string;
-    setManufacturer: (manufacturer: string) => void;
+    selected: string;
+    setSelected: (selected: string) => void;
 }
 
 export interface VehicleProps {
@@ -52,7 +53,20 @@ export interface VehicleProps {
     year: number;
 }
 
+export interface VehicleCardProps {
+    model: string;
+    make: string;
+    mpg: number;
+    transmission: string;
+    year: number;
+    drive: string;
+    cityMPG: number;
+  }
+
+export type CarState = VehicleProps[] & { message?: string };
+
 export interface ShowMoreVehiclesProps {
     pageNumber: number;
     isNext: boolean;
+    setLimit: (limit: number) => void;
   }

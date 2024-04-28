@@ -4,6 +4,7 @@ import Navbar from "./Navbar/page";
 import Search from "./Search/page";
 import SearchManufacturer from "./SearchManufacturer/page";
 import CustomFilter from "./CustomFilter/page";
+import Loading from "./Loading/page";
 import VehicleCard from "./VehicleCard/page";
 import VehicleDetails from "./VehicleDetails/page";
 import ShowMoreVehicles from "./ShowMoreVehicles/page";
@@ -16,6 +17,7 @@ export{
     Search,
     SearchManufacturer,
     CustomFilter,
+    Loading,
     VehicleCard,
     VehicleDetails,
     ShowMoreVehicles,

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+
 import { CustomButtonProps } from '../../types'
 import Image from 'next/image'
 
@@ -9,12 +9,13 @@ const CustomButton = (
     handleClick,
     btnType,
     textStyles,
-    rightIcon
+    rightIcon,
+    isDisabled
   } : CustomButtonProps) => {
 
   return (
     <button
-      disabled = {false}
+      disabled = {isDisabled}
       type = {btnType || 'button'}
       className = {`custom-btn ${containerStyles}`}
       onClick={handleClick}
