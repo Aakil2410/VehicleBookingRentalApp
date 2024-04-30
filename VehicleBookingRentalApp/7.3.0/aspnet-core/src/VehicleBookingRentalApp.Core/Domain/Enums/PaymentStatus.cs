@@ -2,12 +2,12 @@
 
 namespace VehicleBookingRentalApp.Domain.Enums
 {
-    public enum PaymentStatus : int
+    public enum  PaymentStatus : int
     {
-        [Description("Pending")]
-        Pending = 1,
-
         [Description("Paid")]
-        Paid = 2
+        Paid = 1,
+
+        [Description("Pending")]
+        Pending = 2
     }
 }

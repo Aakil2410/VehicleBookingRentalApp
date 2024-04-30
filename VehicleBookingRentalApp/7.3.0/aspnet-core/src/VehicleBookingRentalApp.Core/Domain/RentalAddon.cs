@@ -13,7 +13,7 @@ namespace VehicleBookingRentalApp.Domain
 
         public virtual string Details { get; set; }
 
-        public virtual decimal Cost { get; set; }
+        public virtual decimal? Cost { get; set; }
 
     }
 }

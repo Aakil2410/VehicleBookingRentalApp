@@ -1,6 +1,8 @@
 "use client";
+
 import { useState } from "react";
 import Image from "next/image";
+
 import { VehicleProps } from "../../types";
 import CustomButton from "../CustomButton/page";
 import { calculateCarRent, generateVehicleImageUrl } from "../../providers/VehicleProvider";
@@ -11,9 +13,13 @@ interface VehicleCardProps {
 }
 
 const VehicleCard = ({ vehicle }: VehicleCardProps) => {
+  
+  const [isLiked, setIsLiked] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
   const { city_mpg, make, model, drive, transmission, year } = vehicle;
   const VehicleRent = calculateCarRent(city_mpg, year);
-  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="car-card group">
       <div className="car-card__content">
@@ -30,6 +36,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
           src={generateVehicleImageUrl(vehicle,"")}
+          //src={`https://cdn.imagin.studio/getimage?customer=${imaginApiKey}&make=${make}&modelFamily=${model.split(" ")[0]}&zoomType=fullscreen&modelYear=${year}`}
           alt="vehicle model"
           fill
           priority
@@ -69,9 +76,21 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
             handleClick={() => setIsOpen(true)}
           />
         </div>
+
+      {/* Book btn */}
+        <div className="car-card__btn-container">
+          <CustomButton
+            title="Book Now"
+            containerStyles="w-full py-[16px] rounded-full bg-secondary-orange"
+            textStyles="text-white text-[14px] leading-[17px] font-bold"
+            rightIcon="/right-arrow.svg"
+            handleClick={() => setIsOpen(true)}
+          />
+        </div>
       </div>
 
       <VehicleDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} vehicle={vehicle}/>
+      {/* <Booking ... vehicle{vehicle}/> */}
     </div>
   );
 };

@@ -1,14 +1,14 @@
-"use client";
-import React from "react";
+'use client'
+
 import Image from "next/image";
-import { SearchManufacturerProps } from "../../types";
-import { Combobox, Transition } from "@headlessui/react";
 import { useState, Fragment } from "react";
+import { Combobox, Transition } from "@headlessui/react";
+import { SearchManufacturerProps } from "../../types";
 import { manufacturers } from "../../constants";
 
 const SearchManufacturer = ({
-  manufacturer,
-  setManufacturer,
+  selected,
+  setSelected,
 }: SearchManufacturerProps) => {
   const [query, setQuery] = useState("");
   const filteredManufacturers =
@@ -22,7 +22,7 @@ const SearchManufacturer = ({
         );
   return (
     <div className="search-manufacturer">
-      <Combobox value = {manufacturer} onChange={setManufacturer} > 
+      <Combobox value = {selected} onChange={setSelected} > 
         <div className="relative w-full">
           <Combobox.Button className="absolute top-[14px]">
             <Image
@@ -37,7 +37,7 @@ const SearchManufacturer = ({
           <Combobox.Input
             className="search-manufacturer__input"
             placeholder="Volswagen"
-            displayValue={(manufacturer: string) => manufacturer}
+            displayValue={(item: string) => item}
             onChange={(e) => setQuery(e.target.value)}
           />
 
@@ -49,9 +49,7 @@ const SearchManufacturer = ({
             afterLeave={() => setQuery("")} 
           >
             <Combobox.Options
-              className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-              static
-            >
+              className="search-manufacturer__options" static>
               {filteredManufacturers.length === 0 && query !== "" ? (
                 <Combobox.Option
                   value={query}

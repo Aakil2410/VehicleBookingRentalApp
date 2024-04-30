@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VehicleBookingRentalApp.Domain.Enums
 {
-    public enum VehicleAvailability : int
+    public enum VehicleStatus : int
     {
         [Description("Available")]
         Available = 1,
@@ -15,16 +15,13 @@ namespace VehicleBookingRentalApp.Domain.Enums
         [Description("Booked")]
         Booked = 2,
 
-        [Description("In Maintenance")]
+        [Description("Maintenance")]
         Maintenance = 3,
 
-        [Description("In Reapirs")]
-        Reapirs = 4,
-
         [Description("Unavailable")]
-        Male = 5,
+        Male = 4,
 
         [Description("Out of Service")]
-        OutOfServicce = 6
+        OutOfServicce = 5
     }
 }

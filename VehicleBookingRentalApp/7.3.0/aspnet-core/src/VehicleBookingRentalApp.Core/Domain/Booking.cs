@@ -1,5 +1,5 @@
-﻿using Abp.Domain.Entities.Auditing;
-using System;
+﻿using System;
+using Abp.Domain.Entities.Auditing;
 using VehicleBookingRentalApp.Domain.Enums;
 
 namespace VehicleBookingRentalApp.Domain
@@ -8,15 +8,13 @@ namespace VehicleBookingRentalApp.Domain
     {
         public virtual DateTime? DateOfBooking { get; set; }
 
-        public virtual int RentalPeriod { get; set; }  // calculated >> max 1 year 
-
         public virtual DateTime? StartDate {  get; set; }
 
         public virtual DateTime? EndDate { get; set; }
 
-        public virtual CollectionType? CollectionType { get; set; }
-
         public virtual DateTime? CollectionDate { get; set; }
+
+        public virtual CollectionType? CollectionType { get; set; }
 
         public virtual string PickUpLocation { get; set; }
 
@@ -24,13 +22,18 @@ namespace VehicleBookingRentalApp.Domain
 
         public virtual decimal? RentalCost { get; set; }
 
+        public virtual decimal? Deposit { get; set; }
+
+        public virtual BookingStatus? BookingStatus { get; set; }
 
 
         public virtual Person Person { get; set; }  // Person id
 
         public virtual Vehicle Vehicle { get; set; } // Vehicle id
 
-        public virtual RentalAddon RentalAddon { get; set; } // array??
+        public virtual AdditionalDriver[]? AdditionalDrivers { get; set; } //Array of drivers
+
+        public virtual RentalAddon[]? RentalAddon { get; set; } // array??
 
     }
 }

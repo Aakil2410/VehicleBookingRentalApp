@@ -1567,6 +1567,473 @@ namespace VehicleBookingRentalApp.Migrations
                     b.ToTable("AbpUsers");
                 });
 
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.AdditionalDriver", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ContactNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IDNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.HasIndex("PersonId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AdditionalDrivers");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.BookedVehicle", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("VehicleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.HasIndex("PersonId");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("BookedVehicles");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Booking", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("BookingStatus")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CollectionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CollectionType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateOfBooking")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeliveryLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Deposit")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PickUpLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("RentalCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("VehicleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Document", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AdditionalDriverId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocumentName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdditionalDriverId");
+
+                    b.HasIndex("BookingId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Documents");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Person", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal?>("Credit")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("DOB")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("Department")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IDNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Persons");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.RentalAddon", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("Cost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Option")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.ToTable("RentalAddons");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Transaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("BookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("PaymentStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TransactionType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Vehicle", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AdditionalDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("BaseRentalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Class")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FuelType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("LicensePlateNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Make")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Mileage")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Model")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VIN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VehicleStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Year")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vehicles");
+                });
+
             modelBuilder.Entity("VehicleBookingRentalApp.MultiTenancy.Tenant", b =>
                 {
                     b.Property<int>("Id")
@@ -1849,6 +2316,107 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Navigation("LastModifierUser");
                 });
 
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.AdditionalDriver", b =>
+                {
+                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", null)
+                        .WithMany("AdditionalDrivers")
+                        .HasForeignKey("BookingId");
+
+                    b.HasOne("VehicleBookingRentalApp.Domain.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+
+                    b.HasOne("VehicleBookingRentalApp.Authorization.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Person");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.BookedVehicle", b =>
+                {
+                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingId");
+
+                    b.HasOne("VehicleBookingRentalApp.Domain.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+
+                    b.HasOne("VehicleBookingRentalApp.Domain.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleId");
+
+                    b.Navigation("Booking");
+
+                    b.Navigation("Person");
+
+                    b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Booking", b =>
+                {
+                    b.HasOne("VehicleBookingRentalApp.Domain.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+
+                    b.HasOne("VehicleBookingRentalApp.Domain.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleId");
+
+                    b.Navigation("Person");
+
+                    b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Document", b =>
+                {
+                    b.HasOne("VehicleBookingRentalApp.Domain.AdditionalDriver", "AdditionalDriver")
+                        .WithMany()
+                        .HasForeignKey("AdditionalDriverId");
+
+                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingId");
+
+                    b.HasOne("VehicleBookingRentalApp.Domain.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+
+                    b.Navigation("AdditionalDriver");
+
+                    b.Navigation("Booking");
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Person", b =>
+                {
+                    b.HasOne("VehicleBookingRentalApp.Authorization.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.RentalAddon", b =>
+                {
+                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", null)
+                        .WithMany("RentalAddon")
+                        .HasForeignKey("BookingId");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Transaction", b =>
+                {
+                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingId");
+
+                    b.Navigation("Booking");
+                });
+
             modelBuilder.Entity("VehicleBookingRentalApp.MultiTenancy.Tenant", b =>
                 {
                     b.HasOne("VehicleBookingRentalApp.Authorization.Users.User", "CreatorUser")
@@ -1945,6 +2513,13 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Navigation("Settings");
 
                     b.Navigation("Tokens");
+                });
+
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Booking", b =>
+                {
+                    b.Navigation("AdditionalDrivers");
+
+                    b.Navigation("RentalAddon");
                 });
 #pragma warning restore 612, 618
         }
