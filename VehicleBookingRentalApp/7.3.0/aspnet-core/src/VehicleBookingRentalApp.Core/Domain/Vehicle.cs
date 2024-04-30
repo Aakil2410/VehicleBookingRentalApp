@@ -14,17 +14,27 @@ namespace VehicleBookingRentalApp.Domain
 
         public virtual string Year { get; set; }
 
+        public virtual string VIN { get; set; }
+
+        public virtual string LicensePlateNumber { get; set; }
+
         public virtual int Mileage { get; set; } // string??
 
         public virtual string FuelType { get; set; }
 
         public virtual string Color { get; set; }
 
-        public virtual decimal? RentalPrice { get; set; }
+        public virtual decimal? BaseRentalPrice { get; set; }
 
-        public virtual VehicleAvailability? VehicleAvailability { get; set; }
+        public virtual VehicleStatus? VehicleStatus { get; set; }
 
         public virtual string AdditionalDetails { get; set; }
+
+        // current location
+
+        // location history
+
+        // gps table????
 
     }
 }

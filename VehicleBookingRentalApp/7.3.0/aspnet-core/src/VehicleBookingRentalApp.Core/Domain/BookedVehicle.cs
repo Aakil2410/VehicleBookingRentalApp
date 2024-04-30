@@ -3,8 +3,9 @@ using System;
 
 namespace VehicleBookingRentalApp.Domain
 {
-    public class BookedVehicles : FullAuditedEntity<Guid>
+    public class BookedVehicle : FullAuditedEntity<Guid>
     {
+
 
         public virtual Booking Booking { get; set; }
 

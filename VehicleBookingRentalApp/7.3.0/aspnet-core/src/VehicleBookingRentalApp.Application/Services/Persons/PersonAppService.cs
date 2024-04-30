@@ -1,18 +1,19 @@
-﻿using Abp.Application.Services;
-using Abp.Domain.Repositories;
-using Abp.IdentityFramework;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Text;
+using Abp.IdentityFramework;
 using System.Threading.Tasks;
+using Abp.Domain.Repositories;
+using Abp.Application.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using VehicleBookingRentalApp.Users;
+using VehicleBookingRentalApp.Domain;
 using VehicleBookingRentalApp.Authorization.Roles;
 using VehicleBookingRentalApp.Authorization.Users;
-using VehicleBookingRentalApp.Domain;
 using VehicleBookingRentalApp.Services.Persons.Dto;
-using VehicleBookingRentalApp.Users;
+using Abp.Extensions;
 
 namespace VehicleBookingRentalApp.Services.Persons
 {
@@ -38,10 +39,10 @@ namespace VehicleBookingRentalApp.Services.Persons
         public async Task<PersonDto> CreateAsync(CreatePersonDto input)
         {
             var person = ObjectMapper.Map<Person>(input);
-            person.User = await CreateUserAsync(input);
             person = await _repository.InsertAsync(person);
-            CurrentUnitOfWork.SaveChanges();
+            await CurrentUnitOfWork.SaveChangesAsync();
             return ObjectMapper.Map<PersonDto>(person);
+
         }
 
 
@@ -72,7 +73,7 @@ namespace VehicleBookingRentalApp.Services.Persons
             var person = await _repository.GetAsync(input.Id);
             ObjectMapper.Map(input, person);
             person = await _repository.UpdateAsync(person);
-            CurrentUnitOfWork.SaveChanges();
+            await CurrentUnitOfWork.SaveChangesAsync();
             return ObjectMapper.Map<PersonDto>(person);
         }
 
@@ -84,7 +85,7 @@ namespace VehicleBookingRentalApp.Services.Persons
 
         private async Task<User> CreateUserAsync(CreatePersonDto input)
         {
-            var password = string.IsNullOrEmpty(input?.Password) ? GeneratePassword(8) : input.Password;
+            var password = string.IsNullOrEmpty(input?.Password) ? GeneratePassword(4) : input.Password;
             var user = ObjectMapper.Map<User>(input);
             user.Password = password;
             if (!string.IsNullOrEmpty(user.NormalizedUserName) && !string.IsNullOrEmpty(user.NormalizedEmailAddress))
@@ -119,7 +120,5 @@ namespace VehicleBookingRentalApp.Services.Persons
 
             return "Pass@" + password.ToString();
         }
-
-
     }
 }

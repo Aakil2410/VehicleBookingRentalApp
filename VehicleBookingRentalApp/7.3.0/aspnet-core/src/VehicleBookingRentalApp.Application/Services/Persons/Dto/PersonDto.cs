@@ -1,6 +1,5 @@
-﻿using Abp.Application.Services.Dto;
-using System;
-using VehicleBookingRentalApp.Authorization.Users;
+﻿using System;
+using Abp.Application.Services.Dto;
 using VehicleBookingRentalApp.Domain.Enums;
 
 namespace VehicleBookingRentalApp.Services.Persons.Dto
@@ -24,6 +23,15 @@ namespace VehicleBookingRentalApp.Services.Persons.Dto
         public string Address { get; set; }
 
         public string Email { get; set; }
+
+        public decimal? Credit { get; set; }
+
+
+        // Employee 
+        public string EmployeeNumber { get; set; }
+
+        public Department? Department { get; set; }
+
 
         public long? UserId { get; set; }
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VehicleBookingRentalApp.EntityFrameworkCore;
 
@@ -11,9 +12,10 @@ using VehicleBookingRentalApp.EntityFrameworkCore;
 namespace VehicleBookingRentalApp.Migrations
 {
     [DbContext(typeof(VehicleBookingRentalAppDbContext))]
-    partial class VehicleBookingRentalAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240430102437_M300420241224")]
+    partial class M300420241224
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1685,9 +1687,6 @@ namespace VehicleBookingRentalApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("BookingStatus")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("CollectionDate")
                         .HasColumnType("datetime2");
 
@@ -1712,9 +1711,6 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Property<string>("DeliveryLocation")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Deposit")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -1738,6 +1734,9 @@ namespace VehicleBookingRentalApp.Migrations
 
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("VehicleId")
                         .HasColumnType("uniqueidentifier");
@@ -1789,6 +1788,9 @@ namespace VehicleBookingRentalApp.Migrations
 
                     b.Property<Guid?>("PersonId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool?>("Valid")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -1926,9 +1928,6 @@ namespace VehicleBookingRentalApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal?>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<Guid?>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
@@ -1956,12 +1955,20 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Property<int?>("PaymentStatus")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TransactionType")
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("TotalCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TransactionType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BookingId");
+
+                    b.HasIndex("PersonId");
 
                     b.ToTable("Transactions");
                 });
@@ -2318,8 +2325,8 @@ namespace VehicleBookingRentalApp.Migrations
 
             modelBuilder.Entity("VehicleBookingRentalApp.Domain.AdditionalDriver", b =>
                 {
-                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", null)
-                        .WithMany("AdditionalDrivers")
+                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", "Booking")
+                        .WithMany()
                         .HasForeignKey("BookingId");
 
                     b.HasOne("VehicleBookingRentalApp.Domain.Person", "Person")
@@ -2329,6 +2336,8 @@ namespace VehicleBookingRentalApp.Migrations
                     b.HasOne("VehicleBookingRentalApp.Authorization.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Booking");
 
                     b.Navigation("Person");
 
@@ -2414,7 +2423,13 @@ namespace VehicleBookingRentalApp.Migrations
                         .WithMany()
                         .HasForeignKey("BookingId");
 
+                    b.HasOne("VehicleBookingRentalApp.Domain.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+
                     b.Navigation("Booking");
+
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("VehicleBookingRentalApp.MultiTenancy.Tenant", b =>
@@ -2517,8 +2532,6 @@ namespace VehicleBookingRentalApp.Migrations
 
             modelBuilder.Entity("VehicleBookingRentalApp.Domain.Booking", b =>
                 {
-                    b.Navigation("AdditionalDrivers");
-
                     b.Navigation("RentalAddon");
                 });
 #pragma warning restore 612, 618

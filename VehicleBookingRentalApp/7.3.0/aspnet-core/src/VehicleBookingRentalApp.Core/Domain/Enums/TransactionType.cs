@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace VehicleBookingRentalApp.Domain.Enums
 {
     public enum TransactionType : int
     {
-        [Description("Rental Fee")]
-        RentalFee = 1,
+        [Description("Deposit")]
+        Deposit = 1,
 
-        [Description("Late Return")]
-        LateReturn = 2,
+        [Description("Rental Balance")]
+        RentalBalance = 2,
+
+        [Description("Rental Fee")]
+        RentalFee = 3,
+
+        [Description("Return")]
+        Return = 4,
 
         [Description("Refund")]
-        Refund = 3
+        Refund = 5,
+
+        [Description("Late Return")]
+        LateReturn = 6
     }
 }

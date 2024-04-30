@@ -1,9 +1,12 @@
-﻿using Abp.Application.Services.Dto;
-using System;
+﻿using System;
+using Abp.AutoMapper;
+using Abp.Application.Services.Dto;
+using VehicleBookingRentalApp.Domain;
 using VehicleBookingRentalApp.Domain.Enums;
 
-namespace VehicleBookingRentalApp.Services.Persons
+namespace VehicleBookingRentalApp.Services.Persons.Dto
 {
+    [AutoMap(typeof(Person))]
     public class CreatePersonDto : EntityDto<Guid>
     {
         public string Name { get; set; }
@@ -23,6 +26,15 @@ namespace VehicleBookingRentalApp.Services.Persons
         public string Address { get; set; }
 
         public string Email { get; set; }
+
+        public decimal? Credit { get; set; }
+
+
+        // Employee 
+        public string EmployeeNumber { get; set; }
+
+        public Department? Department { get; set; }
+
 
         public long? UserId { get; set; }
 

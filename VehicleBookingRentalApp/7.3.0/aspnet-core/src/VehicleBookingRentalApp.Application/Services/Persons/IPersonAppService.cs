@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
-using System;
-using VehicleBookingRentalApp.Services.Persons.Dto;
 using Abp.Application.Services;
+using System.Collections.Generic;
+using VehicleBookingRentalApp.Services.Persons.Dto;
 
 namespace VehicleBookingRentalApp.Services.Persons
 {
