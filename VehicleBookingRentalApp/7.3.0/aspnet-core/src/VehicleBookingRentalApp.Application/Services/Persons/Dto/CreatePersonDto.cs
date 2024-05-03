@@ -29,6 +29,8 @@ namespace VehicleBookingRentalApp.Services.Persons.Dto
 
         public decimal? Credit { get; set; }
 
+        public bool? AdditionalDriver { get; set; }
+
 
         // Employee 
         public string EmployeeNumber { get; set; }

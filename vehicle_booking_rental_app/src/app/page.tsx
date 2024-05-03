@@ -47,6 +47,8 @@ export default function Home() {
   }, [fuel, year, limit, manufacturer, model]);
 
   return (
+    <>
+    
     <main className="overflow-hidden">
       <HeroSection />
 
@@ -104,5 +106,6 @@ export default function Home() {
         ))}
       </div>
     </main>
+    </>
   );
 }

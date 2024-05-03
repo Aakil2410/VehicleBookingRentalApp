@@ -10,9 +10,9 @@ namespace VehicleBookingRentalApp.Domain
 
         //public virtual bool? Valid { get; set; }
 
-        public virtual Person? Person { get; set; }
+        public virtual Person Person { get; set; }
 
-        public virtual AdditionalDriver? AdditionalDriver { get; set; }
+        public virtual AdditionalDriver AdditionalDriver { get; set; }
 
         public virtual Booking Booking { get; set; }
     }

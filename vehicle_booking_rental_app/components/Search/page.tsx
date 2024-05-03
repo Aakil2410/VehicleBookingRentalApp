@@ -41,6 +41,7 @@ const Search = ({ setManufacturer, setModel }: SearchProps) => {
         />
         <SearchButton otherClasses='sm:hidden' />
       </div>
+      <span> </span>
       <div className='searchbar__item'>
         <Image
           src='/model-icon.png'
@@ -54,7 +55,7 @@ const Search = ({ setManufacturer, setModel }: SearchProps) => {
           name='model'
           value={searchModel}
           onChange={(e) => setSearchModel(e.target.value)}
-          placeholder='Tiguan...'
+          placeholder='Model'
           className='searchbar__input'
         />
         <SearchButton otherClasses='sm:hidden' />

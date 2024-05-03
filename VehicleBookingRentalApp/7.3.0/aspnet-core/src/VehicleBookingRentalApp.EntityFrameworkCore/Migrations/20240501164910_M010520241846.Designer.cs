@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VehicleBookingRentalApp.EntityFrameworkCore;
 
@@ -11,9 +12,10 @@ using VehicleBookingRentalApp.EntityFrameworkCore;
 namespace VehicleBookingRentalApp.Migrations
 {
     [DbContext(typeof(VehicleBookingRentalAppDbContext))]
-    partial class VehicleBookingRentalAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240501164910_M010520241846")]
+    partial class M010520241846
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1645,6 +1647,9 @@ namespace VehicleBookingRentalApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AdditionalDriverId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
@@ -1673,6 +1678,8 @@ namespace VehicleBookingRentalApp.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdditionalDriverId");
 
                     b.HasIndex("BookingId");
 
@@ -1778,9 +1785,6 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool?>("AdditionalDriver")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -2134,12 +2138,7 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Property<Guid?>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasIndex("BookingId");
-
-                    b.HasIndex("PersonId");
 
                     b.HasDiscriminator().HasValue("AdditionalDriver");
                 });
@@ -2326,6 +2325,10 @@ namespace VehicleBookingRentalApp.Migrations
 
             modelBuilder.Entity("VehicleBookingRentalApp.Domain.BookingAdditionalDriver", b =>
                 {
+                    b.HasOne("VehicleBookingRentalApp.Domain.AdditionalDriver", "AdditionalDriver")
+                        .WithMany()
+                        .HasForeignKey("AdditionalDriverId");
+
                     b.HasOne("VehicleBookingRentalApp.Domain.Booking", "Booking")
                         .WithMany()
                         .HasForeignKey("BookingId");
@@ -2333,6 +2336,8 @@ namespace VehicleBookingRentalApp.Migrations
                     b.HasOne("VehicleBookingRentalApp.Domain.Person", "Person")
                         .WithMany()
                         .HasForeignKey("PersonId");
+
+                    b.Navigation("AdditionalDriver");
 
                     b.Navigation("Booking");
 
@@ -2455,13 +2460,7 @@ namespace VehicleBookingRentalApp.Migrations
                         .WithMany()
                         .HasForeignKey("BookingId");
 
-                    b.HasOne("VehicleBookingRentalApp.Domain.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId");
-
                     b.Navigation("Booking");
-
-                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicProperty", b =>

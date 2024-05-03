@@ -28,6 +28,8 @@ namespace VehicleBookingRentalApp.Domain
 
         public virtual decimal? Credit { get; set; }
 
+        public virtual bool? AdditionalDriver { get; set; }
+
 
 
         // Employee 
