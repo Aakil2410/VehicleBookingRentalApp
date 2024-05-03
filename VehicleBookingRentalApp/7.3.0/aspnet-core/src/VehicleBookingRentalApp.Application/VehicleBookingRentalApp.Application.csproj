@@ -14,7 +14,4 @@
   <ItemGroup>
     <ProjectReference Include="..\VehicleBookingRentalApp.Core\VehicleBookingRentalApp.Core.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\NewFolder\" />
-  </ItemGroup>
 </Project>

@@ -26,7 +26,10 @@ namespace VehicleBookingRentalApp.Services.Persons.Dto
 
         public decimal? Credit { get; set; }
 
-        public bool? AdditionalDriver { get; set; }
+        /// <summary>
+        /// Indicates whether the booking is for an additional driver. Default value is false.
+        /// </summary>
+        public virtual bool? IsAdditionalDriver { get; set; } = false;
 
 
         // Employee 

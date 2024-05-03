@@ -13,11 +13,9 @@ namespace VehicleBookingRentalApp.EntityFrameworkCore
 
         public DbSet<AdditionalDriver> AdditionalDrivers {  get; set; }
 
+        public DbSet<BookedRentalAddon> BookedRentalAddons { get; set; }
+
         public DbSet<Booking> Bookings { get; set; }
-
-        public DbSet<BookingAdditionalDriver> BookingAdditionalDrivers { get; set; }
-
-        public DbSet<BookingRentalAddon> BookingRentalAddons { get; set; }
 
         public DbSet<Document> Documents { get; set; }
 

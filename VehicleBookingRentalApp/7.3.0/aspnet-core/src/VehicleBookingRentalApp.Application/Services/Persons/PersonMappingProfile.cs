@@ -29,6 +29,7 @@ namespace VehicleBookingRentalApp.Services.Persons
                 .ForMember(x => x.ContactNumber, m => m.MapFrom(x => x.ContactNumber))
                 .ForMember(x => x.Address, m => m.MapFrom(x => x.Address))
                 .ForMember(x => x.Credit, m => m.MapFrom(x => x.Credit))
+                .ForMember(x => x.IsAdditionalDriver, m => m.MapFrom(x => x.IsAdditionalDriver))
                 .ForMember(x => x.EmployeeNumber, m => m.MapFrom(x => x.EmployeeNumber))
                 .ForMember(x => x.Department, m => m.MapFrom(x => x.Department));
 
@@ -42,6 +43,7 @@ namespace VehicleBookingRentalApp.Services.Persons
                 .ForMember(x => x.ContactNumber, m => m.MapFrom(x => x.ContactNumber))
                 .ForMember(x => x.Address, m => m.MapFrom(x => x.Address))
                 .ForMember(x => x.Credit, m => m.MapFrom(x => x.Credit))
+                .ForMember(x => x.IsAdditionalDriver, m => m.MapFrom(x => x.IsAdditionalDriver))
                 .ForMember(x => x.EmployeeNumber, m => m.MapFrom(x => x.EmployeeNumber))
                 .ForMember(x => x.Department, m => m.MapFrom(x => x.Department));
 

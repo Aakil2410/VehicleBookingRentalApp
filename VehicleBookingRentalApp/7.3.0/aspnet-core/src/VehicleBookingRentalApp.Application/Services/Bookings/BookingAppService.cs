@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VehicleBookingRentalApp.Domain;
 using VehicleBookingRentalApp.Services.Bookings.Dto;
@@ -15,17 +16,14 @@ namespace VehicleBookingRentalApp.Services.Bookings
         private readonly IRepository<Booking, Guid> _repository;
         private readonly IRepository<Person, Guid> _personRepository;
         private readonly IRepository<Vehicle, Guid> _vehicleRepository;
-        private readonly IRepository<BookingAdditionalDriver, Guid> _additionalDriverRepository;
 
         public BookingAppService(IRepository<Booking, Guid> repository,
                                 IRepository<Person, Guid> personRepository,
-                                IRepository<Vehicle, Guid> vehicleRepository,
-                                IRepository<BookingAdditionalDriver, Guid> additionalDriverRepository)
+                                IRepository<Vehicle, Guid> vehicleRepository)
         {
             _repository = repository;
             _personRepository = personRepository;
             _vehicleRepository = vehicleRepository;
-            _additionalDriverRepository = additionalDriverRepository;
         }
 
         [HttpPost]

@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.IdentityFramework;
 using Microsoft.AspNetCore.Identity;
@@ -38,7 +39,7 @@ namespace VehicleBookingRentalApp.Services.Persons
         public async Task<PersonDto> CreateAsync(CreatePersonDto input)
         {
             var person = ObjectMapper.Map<Person>(input);
-            if(input.Password != null)
+            if(input.IsAdditionalDriver != true && input.Password != null)
             {
                 person.User = await CreateUserAsync(input);
             }
@@ -67,6 +68,14 @@ namespace VehicleBookingRentalApp.Services.Persons
         {
             var person = _repository.GetAllIncluding(x => x.User);
             return ObjectMapper.Map<List<PersonDto>>(person);
+        }
+
+        [HttpGet]
+        public async Task<List<PersonDto>> GetAllAdditionalDrivers()
+        {
+            var additionalDrivers = await _repository.GetAllListAsync(p => (bool)p.IsAdditionalDriver);
+            var additionalDriverDtos = ObjectMapper.Map<List<PersonDto>>(additionalDrivers);
+            return new List<PersonDto>(additionalDriverDtos);
         }
 
         [HttpPatch]

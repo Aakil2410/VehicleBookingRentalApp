@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VehicleBookingRentalApp.EntityFrameworkCore;
 
@@ -11,9 +12,10 @@ using VehicleBookingRentalApp.EntityFrameworkCore;
 namespace VehicleBookingRentalApp.Migrations
 {
     [DbContext(typeof(VehicleBookingRentalAppDbContext))]
-    partial class VehicleBookingRentalAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240503092204_M030520241121")]
+    partial class M030520241121
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1779,6 +1781,9 @@ namespace VehicleBookingRentalApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool?>("AdditionalDriver")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
@@ -1820,9 +1825,6 @@ namespace VehicleBookingRentalApp.Migrations
 
                     b.Property<string>("IDNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsAdditionalDriver")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
