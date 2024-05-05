@@ -40,6 +40,6 @@ namespace VehicleBookingRentalApp.Services.Bookings.Dto
 
         public List<Guid?> AdditionalDriverIds { get; set; }
 
-        //public List<Guid?> RentalAddonIds { get; set; } // array??
+        public List<Guid?> RentalAddonIds { get; set; }
     }
 }

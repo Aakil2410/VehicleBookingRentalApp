@@ -31,5 +31,7 @@ namespace VehicleBookingRentalApp.Domain
         public virtual Person Person { get; set; }  // Person id
 
         public virtual Vehicle Vehicle { get; set; } // Vehicle id
+
+
     }
 }

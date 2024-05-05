@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VehicleBookingRentalApp.Domain;
-using VehicleBookingRentalApp.Services.AdditionalDrivers.Dto;
 using VehicleBookingRentalApp.Services.BookedRentalAddons.Dto;
 
 namespace VehicleBookingRentalApp.Services.BookedRentalAddons

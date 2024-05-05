@@ -2,8 +2,6 @@
 using System;
 using VehicleBookingRentalApp.Domain;
 using VehicleBookingRentalApp.Services.AdditionalDrivers.Dto;
-using VehicleBookingRentalApp.Services.Bookings.Dto;
-using VehicleBookingRentalApp.Services.Utils;
 
 namespace VehicleBookingRentalApp.Services.AdditionalDrivers
 {

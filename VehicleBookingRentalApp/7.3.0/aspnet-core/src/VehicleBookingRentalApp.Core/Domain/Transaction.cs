@@ -12,6 +12,8 @@ namespace VehicleBookingRentalApp.Domain
 
         public virtual PaymentStatus? PaymentStatus { get; set; }
 
+        public virtual Person Person { get; set; }
+
         public virtual Booking Booking { get; set; }
 
     }
