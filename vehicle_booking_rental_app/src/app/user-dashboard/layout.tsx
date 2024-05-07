@@ -1,16 +1,7 @@
 'use client'
 import React, { useState } from 'react';
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Mentions, Menu, theme } from 'antd';
-import Dashboard from './main/page';
-import Transaction from './transactions/page';
 import Link from 'next/link';
 import withAuth from '../../../HOC/withAuth/page';
 
@@ -33,13 +24,10 @@ function getItem(
 }
 
 const navLinks = [
-  { name: "Dashboard", href: "./" },
-  { name: "Books", href: "./" },
-  { name: "Reservations", href: "./" },
-  { name: "Transactions", href: "./" },
-  { name: "Books on Loan", href: "./" },
-  { name: "Fines", href: "./fines"},
-  { name: "Order Bookss", href: "./" },
+  { name: "My current rentals", href: "./" },
+  { name: "Book a vehicle", href: "./user-dashboard/booking" },
+  { name: "History", href: "./" },
+  { name: "Logout", href: "/", onclick: () => {localStorage.removeItem("token")}}
 ];
 
 
@@ -68,11 +56,8 @@ const AdminLayout= ({
       <Layout>
         {/* <Header style={{ padding: 0, background: colorBgContainer, border: '1px solid' }} />
          */}
-        <Content style={{ margin: '0 16px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+        <Content style={{ margin: '15px' }}>
+          <h1>Dream Rentals</h1>
           <div
             style={{
               padding: 24,

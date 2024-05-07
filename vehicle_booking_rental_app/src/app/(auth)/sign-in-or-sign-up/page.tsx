@@ -54,7 +54,6 @@ const SignInSignUp: FC = () => {
 
   return (
     <>
-    <Navbar />
     <div className={styles.container}>
       <div className={styles["form-container"]}>
         <div className={styles["tab-buttons"]}>
