@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VehicleBookingRentalApp.Domain;
+using VehicleBookingRentalApp.Services.AdditionalDrivers.Dto;
 using VehicleBookingRentalApp.Services.Bookings.Dto;
 using VehicleBookingRentalApp.Services.Utils;
 
@@ -73,13 +74,14 @@ namespace VehicleBookingRentalApp.Services.Bookings
             }
 
             return result;
-
         }
 
         [HttpGet]
         public async Task<BookingDto> GetAsync(Guid id)
         {
-            return ObjectMapper.Map<BookingDto>(await _repository.GetAllIncluding(x => x.Person, y => y.Vehicle).FirstOrDefaultAsync());
+            return ObjectMapper.Map<BookingDto>(await _repository.GetAllIncluding(x => x.Person, y => y.Vehicle, z => z.AdditionalDriver).FirstOrDefaultAsync(z => z.Id == id));
+
+
         }
 
         [HttpGet]

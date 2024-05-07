@@ -8,6 +8,8 @@ import {
   CustomFilter,
   VehicleCard,
   ShowMoreVehicles,
+  Navbar,
+  Footer,
 } from "../../components";
 import { fetchVehicles } from "../../providers/VehicleProvider";
 import { fuels, yearsOfProduction } from "../../constants";
@@ -48,7 +50,7 @@ export default function Home() {
 
   return (
     <>
-    
+    <Navbar />
     <main className="overflow-hidden">
       <HeroSection />
 
@@ -106,6 +108,7 @@ export default function Home() {
         ))}
       </div>
     </main>
+    <Footer />
     </>
   );
 }

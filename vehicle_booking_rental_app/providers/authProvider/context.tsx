@@ -1,17 +1,19 @@
 import { createContext } from "react";
 
 export interface IUser { // all info needed by Dto
-    Name: string,
-    Surname: string,
-    Gender: number,
-    DOB: Date,//????
-    IDNumber: string,
-    ContactNumber: string,
-    Addres: string,
-    Email: string,
-    Password: string,
-    EmployeesNumber: string,
-    Department: string
+    name: string,
+    surname: string,
+    gender: number,
+    dob: Date,//????
+    idNumber: string,
+    contactNumber: string,
+    addres: string,
+    email: string,
+    credit: number,
+    isAdditionalDriver: boolean,
+    password: string,
+    employeeNumber: string,
+    department: number
 }
 
 export interface ILogin {

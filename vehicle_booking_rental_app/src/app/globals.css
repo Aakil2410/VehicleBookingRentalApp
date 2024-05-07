@@ -55,7 +55,7 @@
 }
 
 .hero__image {
-  @apply relative xl:w-full w-[100%] xl:h-full h-[100%] z-0;
+  @apply relative xl:w-full w-[150%] xl:h-full h-[150%] z-0;
 }
 
 .hero__image-overlay {

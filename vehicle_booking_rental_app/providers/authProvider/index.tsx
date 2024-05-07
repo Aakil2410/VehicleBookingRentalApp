@@ -10,7 +10,11 @@ import {
   IUserStateContext,
   IUserActionContext,
 } from "./context";
-import { CREATE_USER, USER_LOGIN, USER_LOGOUT } from "./actions";
+import {
+  createUserRequestAction,
+  loginUserRequestAction,
+  logoutUserRequestAction,
+} from "./actions";
 import { database } from "../apiInstance";
 import { message } from "antd";
 import { useRouter } from "next/navigation";
@@ -27,20 +31,21 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
       );
       if (response.data.success) {
         localStorage.setItem("token", response.data.result.accessToken);
-        dispatch(USER_LOGIN(response.data.result));
-
+        dispatch(loginUserRequestAction(response.data.result));
+        push("/user-dashboard");
         // do check for user type
-        if (response.data.result.userId === 1) {
-          push("/admin-dashboard");
+        // if (response.data.result.userId === 1) {
+        //   push("/admin-dashboard");
 
-          message.success(`Welcome`);
-        } else {
-          push("/user-dashboard");
+        //   message.success(`Welcome`);
+        // } else {
+        //   push("/user-dashboard");
 
-          message.success("Welcome");
-        }
+        //   message.success("Welcome");
+        // }
       } else {
         message.error(`${response.data.message} \n ${response.data.details}`);
+        console.log("error");
       }
     } catch (error) {
       console.log(error);
@@ -57,8 +62,9 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
 
       if (response.data.success) {
         message.success(`Hi ${response.data.result.name}. `); // ad more to message
-        dispatch(CREATE_USER(response.data.result));
-        push("/sign-in"); // try auto login
+        console.log(response.data);
+        dispatch(createUserRequestAction(response.data.result));
+        push("/sign-in-or-sign-up"); // try auto login
         message.info("Try logging in");
       } else {
         message.error("Failed to create user");
@@ -70,7 +76,7 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const logoutUser = () => {
-    dispatch(USER_LOGOUT());
+    dispatch(logoutUserRequestAction());
     localStorage.removeItem("token");
     push("/");
   };
