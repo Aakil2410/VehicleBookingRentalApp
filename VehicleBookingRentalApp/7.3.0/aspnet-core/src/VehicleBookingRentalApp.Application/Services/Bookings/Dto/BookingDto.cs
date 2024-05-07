@@ -1,7 +1,7 @@
-﻿using System;
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
+using System;
+using System.Collections.Generic;
 using VehicleBookingRentalApp.Domain.Enums;
-using VehicleBookingRentalApp.Domain;
 
 
 namespace VehicleBookingRentalApp.Services.Bookings.Dto
@@ -38,6 +38,8 @@ namespace VehicleBookingRentalApp.Services.Bookings.Dto
 
         public Guid? VehicleId { get; set; } // Vehicle 
 
-        public Guid? RentalAddonId { get; set; } // array??
+        public List<Guid?> AdditionalDriverIds { get; set; }
+
+        public List<Guid?> RentalAddonIds { get; set; }
     }
 }

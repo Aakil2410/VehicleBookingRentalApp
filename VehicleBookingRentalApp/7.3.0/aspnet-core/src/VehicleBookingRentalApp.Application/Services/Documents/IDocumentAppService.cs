@@ -1,22 +1,13 @@
 ﻿using Abp.Application.Services;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using System;
-using VehicleBookingRentalApp.Services.Vehicles.Dto;
 using VehicleBookingRentalApp.Services.Documents.Dto;
+using VehicleBookingRentalApp.Services.RentalAddons.Dto;
 
 namespace VehicleBookingRentalApp.Services.Documents
 {
-    public interface IDocumentAppService : IApplicationService
+    public interface IDocumentAppService : IAsyncCrudAppService<DocumentDto, Guid, PagedAndSortedResultRequestDto>
     {
-        Task<DocumentDto> CreateAsync(DocumentDto input);
 
-        Task<DocumentDto> GetAsync(Guid id);
-
-        Task<List<DocumentDto>> GetAllAsync();
-
-        Task<DocumentDto> UpdateAsync(DocumentDto input);
-
-        Task DeleteAsync(Guid id);
     }
 }

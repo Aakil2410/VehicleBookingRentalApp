@@ -1576,9 +1576,6 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Property<Guid?>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ContactNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
@@ -1591,15 +1588,6 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IDNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -1609,17 +1597,8 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid?>("PersonId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -1627,12 +1606,10 @@ namespace VehicleBookingRentalApp.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("AdditionalDrivers");
                 });
 
-            modelBuilder.Entity("VehicleBookingRentalApp.Domain.BookedVehicle", b =>
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.BookedRentalAddon", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1662,21 +1639,16 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("VehicleId")
+                    b.Property<Guid?>("RentalAddonId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BookingId");
 
-                    b.HasIndex("PersonId");
+                    b.HasIndex("RentalAddonId");
 
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("BookedVehicles");
+                    b.ToTable("BookedRentalAddons");
                 });
 
             modelBuilder.Entity("VehicleBookingRentalApp.Domain.Booking", b =>
@@ -1849,6 +1821,9 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Property<string>("IDNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool?>("IsAdditionalDriver")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -1878,9 +1853,6 @@ namespace VehicleBookingRentalApp.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("Cost")
@@ -1914,8 +1886,6 @@ namespace VehicleBookingRentalApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
 
                     b.ToTable("RentalAddons");
                 });
@@ -2318,25 +2288,6 @@ namespace VehicleBookingRentalApp.Migrations
 
             modelBuilder.Entity("VehicleBookingRentalApp.Domain.AdditionalDriver", b =>
                 {
-                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", null)
-                        .WithMany("AdditionalDrivers")
-                        .HasForeignKey("BookingId");
-
-                    b.HasOne("VehicleBookingRentalApp.Domain.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId");
-
-                    b.HasOne("VehicleBookingRentalApp.Authorization.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Person");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("VehicleBookingRentalApp.Domain.BookedVehicle", b =>
-                {
                     b.HasOne("VehicleBookingRentalApp.Domain.Booking", "Booking")
                         .WithMany()
                         .HasForeignKey("BookingId");
@@ -2345,15 +2296,24 @@ namespace VehicleBookingRentalApp.Migrations
                         .WithMany()
                         .HasForeignKey("PersonId");
 
-                    b.HasOne("VehicleBookingRentalApp.Domain.Vehicle", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleId");
-
                     b.Navigation("Booking");
 
                     b.Navigation("Person");
+                });
 
-                    b.Navigation("Vehicle");
+            modelBuilder.Entity("VehicleBookingRentalApp.Domain.BookedRentalAddon", b =>
+                {
+                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingId");
+
+                    b.HasOne("VehicleBookingRentalApp.Domain.RentalAddon", "RentalAddon")
+                        .WithMany()
+                        .HasForeignKey("RentalAddonId");
+
+                    b.Navigation("Booking");
+
+                    b.Navigation("RentalAddon");
                 });
 
             modelBuilder.Entity("VehicleBookingRentalApp.Domain.Booking", b =>
@@ -2399,13 +2359,6 @@ namespace VehicleBookingRentalApp.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("VehicleBookingRentalApp.Domain.RentalAddon", b =>
-                {
-                    b.HasOne("VehicleBookingRentalApp.Domain.Booking", null)
-                        .WithMany("RentalAddon")
-                        .HasForeignKey("BookingId");
                 });
 
             modelBuilder.Entity("VehicleBookingRentalApp.Domain.Transaction", b =>
@@ -2513,13 +2466,6 @@ namespace VehicleBookingRentalApp.Migrations
                     b.Navigation("Settings");
 
                     b.Navigation("Tokens");
-                });
-
-            modelBuilder.Entity("VehicleBookingRentalApp.Domain.Booking", b =>
-                {
-                    b.Navigation("AdditionalDrivers");
-
-                    b.Navigation("RentalAddon");
                 });
 #pragma warning restore 612, 618
         }

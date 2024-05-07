@@ -2,6 +2,7 @@
 using Abp.Domain.Entities.Auditing;
 using VehicleBookingRentalApp.Domain.Enums;
 using VehicleBookingRentalApp.Authorization.Users;
+using Microsoft.AspNetCore.Identity;
 
 namespace VehicleBookingRentalApp.Domain
 {
@@ -28,13 +29,17 @@ namespace VehicleBookingRentalApp.Domain
 
         public virtual decimal? Credit { get; set; }
 
+        /// <summary>
+        /// Indicates whether the booking is for an additional driver. Default value is false.
+        /// </summary>
+        public virtual bool? IsAdditionalDriver { get; set; } = false;
+
 
 
         // Employee 
         public virtual string EmployeeNumber { get; set; }
 
         public virtual Department? Department { get; set; }
-
 
 
         public virtual User User { get; set; }

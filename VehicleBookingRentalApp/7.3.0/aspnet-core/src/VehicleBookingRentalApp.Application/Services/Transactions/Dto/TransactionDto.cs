@@ -17,6 +17,8 @@ namespace VehicleBookingRentalApp.Services.Transactions.Dto
 
         public string StatusName { get; set; }
 
+        public Guid? PersonId { get; set; }
+
         public Guid? BookingId { get; set; }
     }
 }

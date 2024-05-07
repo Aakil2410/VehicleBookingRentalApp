@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Abp.Domain.Entities.Auditing;
 using VehicleBookingRentalApp.Domain.Enums;
 
@@ -31,9 +32,8 @@ namespace VehicleBookingRentalApp.Domain
 
         public virtual Vehicle Vehicle { get; set; } // Vehicle id
 
-        public virtual AdditionalDriver[]? AdditionalDrivers { get; set; } //Array of drivers
+        public virtual List<AdditionalDriver> AdditionalDriver { get; set; }
 
-        public virtual RentalAddon[]? RentalAddon { get; set; } // array??
 
     }
 }

@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.19",
-    "antd": "^5.16.4",
+    "@types/redux-actions": "^2.6.5",
+    "antd": "^5.17.0",
     "axios": "^1.6.8",
     "next": "14.2.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "redux-actions": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

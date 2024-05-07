@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Abp.Application.Services;
+using Abp.Domain.Repositories;
+using Abp.IdentityFramework;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Abp.IdentityFramework;
 using System.Threading.Tasks;
-using Abp.Domain.Repositories;
-using Abp.Application.Services;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
-using VehicleBookingRentalApp.Users;
-using VehicleBookingRentalApp.Domain;
 using VehicleBookingRentalApp.Authorization.Roles;
 using VehicleBookingRentalApp.Authorization.Users;
+using VehicleBookingRentalApp.Domain;
 using VehicleBookingRentalApp.Services.Persons.Dto;
-using Abp.Extensions;
+using VehicleBookingRentalApp.Users;
 
 namespace VehicleBookingRentalApp.Services.Persons
 {
@@ -39,12 +38,15 @@ namespace VehicleBookingRentalApp.Services.Persons
         public async Task<PersonDto> CreateAsync(CreatePersonDto input)
         {
             var person = ObjectMapper.Map<Person>(input);
+            if(input.IsAdditionalDriver != true && input.Password != null)
+            {
+                person.User = await CreateUserAsync(input);
+            }
             person = await _repository.InsertAsync(person);
             await CurrentUnitOfWork.SaveChangesAsync();
             return ObjectMapper.Map<PersonDto>(person);
-
         }
-
+            
 
         [HttpGet]
         public async Task<PersonDto> GetAsync(Guid id)
@@ -65,6 +67,14 @@ namespace VehicleBookingRentalApp.Services.Persons
         {
             var person = _repository.GetAllIncluding(x => x.User);
             return ObjectMapper.Map<List<PersonDto>>(person);
+        }
+
+        [HttpGet]
+        public async Task<List<PersonDto>> GetAllAdditionalDrivers()
+        {
+            var additionalDrivers = await _repository.GetAllListAsync(p => (bool)p.IsAdditionalDriver);
+            var additionalDriverDtos = ObjectMapper.Map<List<PersonDto>>(additionalDrivers);
+            return new List<PersonDto>(additionalDriverDtos);
         }
 
         [HttpPatch]

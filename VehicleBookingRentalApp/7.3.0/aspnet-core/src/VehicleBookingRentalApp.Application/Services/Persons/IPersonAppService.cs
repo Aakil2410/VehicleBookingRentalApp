@@ -14,6 +14,8 @@ namespace VehicleBookingRentalApp.Services.Persons
 
         Task<List<PersonDto>> GetAllAsync();
 
+        Task<List<PersonDto>> GetAllAdditionalDrivers();
+
         Task<PersonDto> UpdateAsync(PersonDto input);
 
         Task DeleteAsync(Guid id);

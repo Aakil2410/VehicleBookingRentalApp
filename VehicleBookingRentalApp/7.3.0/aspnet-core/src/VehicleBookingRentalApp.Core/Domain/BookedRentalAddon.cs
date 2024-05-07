@@ -3,15 +3,10 @@ using System;
 
 namespace VehicleBookingRentalApp.Domain
 {
-    public class BookedVehicle : FullAuditedEntity<Guid>
+    public class BookedRentalAddon : FullAuditedEntity<Guid>
     {
-
+        public virtual RentalAddon RentalAddon { get; set; }
 
         public virtual Booking Booking { get; set; }
-
-        public virtual Person Person { get; set; }
-
-        public virtual Vehicle Vehicle { get; set; }
-
     }
 }
